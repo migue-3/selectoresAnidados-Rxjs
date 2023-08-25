@@ -1,0 +1,50 @@
+<h1 class="mt-3">Selectores anidados
+    <mat-icon>trending_up</mat-icon>
+</h1>
+<hr>
+
+<form [formGroup]="myForm">
+
+    <div class="row mb-3">
+        <div class="col">
+            <label class="form-control">Continente:
+                <mat-icon color="primary">public</mat-icon>
+            </label>
+            <select class="form-control" formControlName="region">
+                <option value="">-- Selecione Continente --</option>
+                <option *ngFor="let region of regions" [value]="region">{{region}}</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row mb-3" *ngIf="countriesByRegion.length > 0">
+        <div class="col">
+            <label class="form-control">Países:
+                <mat-icon color="primary">emoji_flags</mat-icon>
+            </label>
+            <select class="form-control" formControlName="country">
+                <option value="">-- Selecione País --</option>
+                <option *ngFor="let country of countriesByRegion" [value]="country.cca3">{{country.name}}</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row mb-3" *ngIf="borders.length > 0">
+        <div class="col">
+            <label class="form-control">Fronteras:
+                <mat-icon color="primary">language</mat-icon>
+            </label>
+            <select class="form-control" formControlName="border">
+                <option value="">-- Selecione la frontera --</option>
+                <option *ngFor="let country of borders" [value]="country.cca3">{{country.name}}</option>
+            </select>
+        </div>
+    </div>
+</form>
+
+<h3>Formulario
+    <mat-icon>description</mat-icon>
+</h3>
+<code>
+    {{myForm.value | json}}
+</code>
